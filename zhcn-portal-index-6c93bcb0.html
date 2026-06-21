@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>爱游戏体育 · 信息卡片介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f8fa;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 0 1rem 3rem;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 主视觉 — 蓝绿渐变卡片 */
+        .hero {
+            margin-top: 2rem;
+            background: linear-gradient(145deg, #0b5e6b 0%, #1a8c8a 70%, #2ab3a6 100%);
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            color: #fff;
+            box-shadow: 0 12px 28px rgba(10, 80, 90, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 260px;
+            height: 260px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 680px;
+            opacity: 0.92;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(2px);
+        }
+
+        /* 信息卡片网格 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(0, 40, 50, 0.06);
+            transition: all 0.2s ease;
+            border: 1px solid #e9f0f2;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(15, 100, 110, 0.12);
+            border-color: #b6d9db;
+        }
+
+        .card .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: #dff3f0;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #0a4f5a;
+        }
+
+        .card p {
+            color: #2d3f4a;
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .card li {
+            padding: 0.25rem 0;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .card li::before {
+            content: "▹";
+            color: #1a8c8a;
+        }
+
+        /* 人群卡片特殊底色 */
+        .card.audience {
+            background: #f6fcfb;
+            border-left: 4px solid #2ab3a6;
+        }
+
+        /* 自然链接段落 */
+        .link-section {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 2rem 1.8rem;
+            margin: 2rem 0 1rem;
+            border: 1px solid #d0e5e3;
+            box-shadow: 0 4px 14px rgba(20, 80, 80, 0.04);
+        }
+
+        .link-section h2 {
+            font-size: 1.6rem;
+            color: #0b5e6b;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .link-section p {
+            margin-bottom: 0.9rem;
+            font-size: 1rem;
+        }
+
+        .link-section a {
+            color: #0b6e7a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid transparent;
+            transition: border 0.2s;
+        }
+
+        .link-section a:hover {
+            border-bottom-color: #1a8c8a;
+        }
+
+        .faq-summary {
+            background: #eef7f5;
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .faq-summary h3 {
+            font-size: 1.2rem;
+            color: #0a4f5a;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #d0e1df;
+        }
+
+        .faq-item:last-child {
+            border-bottom: 0;
+        }
+
+        .faq-item strong {
+            color: #115f69;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #5b717a;
+            border-top: 1px solid #d6e4e2;
+            padding-top: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero {
+                padding: 1.8rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- 主视觉 -->
+    <div class="hero">
+        <h1>爱游戏体育 · 信息导航</h1>
+        <p>围绕赛事资讯、资料对照与延伸阅读，提供简洁的卡片式索引。方便日常查询和内容梳理。</p>
+        <span class="tagline">⚡ 信息卡片 · 蓝绿底色</span>
+    </div>
+
+    <!-- 卡片网格：用途 + 特点 + 场景 -->
+    <div class="grid">
+        <!-- 用途卡片 -->
+        <div class="card">
+            <div class="icon">📋</div>
+            <h3>日常查对用途</h3>
+            <p>汇集体育赛事基础信息、赛程对照、队伍资料等，适合赛前快速浏览和赛后数据对比。</p>
+            <ul>
+                <li>赛程日历与对阵查询</li>
+                <li>积分榜与历史交锋记录</li>
+                <li>常用术语及规则说明</li>
+            </ul>
+        </div>
+
+        <!-- 场景卡片 -->
+        <div class="card">
+            <div class="icon">🌐</div>
+            <h3>延伸阅读场景</h3>
+            <p>从一条资讯延伸到相关背景、球员动态或赛季回顾。适合爱好者做轻度资料收集。</p>
+            <ul>
+                <li>赛事专题与深度报道</li>
+                <li>赛季数据变化趋势</li>
+                <li>相关文献与讨论索引</li>
+            </ul>
+        </div>
+
+        <!-- 特点卡片 -->
+        <div class="card">
+            <div class="icon">🧩</div>
+            <h3>页面特点</h3>
+            <p>采用卡片模块划分，信息层级清晰。移动端适配良好，便于在手机端快速查阅。</p>
+            <ul>
+                <li>网格布局，信息独立</li>
+                <li>蓝绿色点缀，视觉友好</li>
+                <li>轻量结构，加载迅速</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 适合人群卡片（独立宽卡，用 audience 类） -->
+    <div class="card audience" style="margin-bottom: 1.5rem;">
+        <div class="icon">👥</div>
+        <h3>适合人群</h3>
+        <p>对体育资讯有日常查阅需求的使用者、赛事爱好者、做基础资料对照的读者，以及想快速了解爱游戏体育信息架构的访客。</p>
+        <ul>
+            <li>体育迷 · 日常浏览信息</li>
+            <li>内容整理者 · 对照参考</li>
+            <li>新访客 · 了解平台内容方向</li>
+        </ul>
+    </div>
+
+    <!-- 自然链接段落（带有严格的爱游戏体育 a 标签） -->
+    <div class="link-section">
+        <h2>🔗 延伸信息链接</h2>
+        <p>如果你需要围绕体育赛事做更系统的资料对照，<a href="https://zhcn-portal-ayxsport.com">爱游戏体育</a>页面内整合了多项赛事索引和背景说明。你可以把它作为一个内容起点，再根据兴趣深入浏览不同板块。</p>
+        <p>无论是查找某支球队的近期战绩，还是回顾联赛历史数据，通过 <a href="https://zhcn-portal-ayxsport.com">爱游戏体育</a> 的信息组织方式，都能节省不少检索时间。</p>
+        <p style="margin-bottom: 0;">本介绍页仅作为功能说明和入口指引，具体内容以对应页面实际展示为准。</p>
+    </div>
+
+    <!-- FAQ 摘要卡片 -->
+    <div class="faq-summary">
+        <h3>❓ 常见简要说明</h3>
+        <div class="faq-item">
+            <strong>这个页面主要做什么？</strong> —— 提供信息卡片式的导航，方便日常查对和延伸阅读，并非官方主页。
+        </div>
+        <div class="faq-item">
+            <strong>如何获取更详细的赛事资料？</strong> —— 你可以直接浏览 <a href="https://zhcn-portal-ayxsport.com" style="color:#0b6e7a;text-decoration:underline;">爱游戏体育</a> 中的专题模块，内容会持续更新。
+        </div>
+        <div class="faq-item">
+            <strong>信息更新频率？</strong> —— 赛事数据随赛季推进调整，建议定期回看对照。
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        信息卡片 · 内容仅供参考 · 具体以官方最新发布为准
+    </div>
+</div>
+</body>
+</html>

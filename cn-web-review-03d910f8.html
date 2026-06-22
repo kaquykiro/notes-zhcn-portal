@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星空体育 · 杂志专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+      background: #f4f8f9;
+      color: #1c2a2e;
+      line-height: 1.7;
+      padding: 0 16px;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 0 48px;
+    }
+
+    /* hero 区域 – 杂志横幅感 */
+    .hero-magazine {
+      background: linear-gradient(145deg, #005f5c 0%, #013a3a 100%);
+      border-radius: 32px 32px 32px 32px;
+      padding: 48px 28px 40px 28px;
+      margin-bottom: 48px;
+      box-shadow: 0 20px 30px -10px rgba(0, 60, 60, 0.25);
+      position: relative;
+      overflow: hidden;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-magazine::after {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-magazine h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .hero-magazine h1 span {
+      display: inline-block;
+      background: #b7e3e0;
+      color: #002f2c;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 4px 18px;
+      border-radius: 40px;
+      vertical-align: middle;
+      margin-left: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-magazine .hero-sub {
+      font-size: 1.15rem;
+      max-width: 600px;
+      opacity: 0.9;
+      border-left: 3px solid #6cc5c0;
+      padding-left: 22px;
+      margin-top: 6px;
+    }
+
+    .hero-magazine .hero-tagline {
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.08);
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
+      width: fit-content;
+      margin-top: 8px;
+    }
+
+    /* 网格卡片区 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 40px 0 44px;
+    }
+
+    .grid-card {
+      background: white;
+      border-radius: 28px;
+      padding: 28px 22px 32px;
+      box-shadow: 0 4px 18px rgba(0, 40, 40, 0.04);
+      transition: box-shadow 0.2s ease, transform 0.15s;
+      border: 1px solid #e2efed;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grid-card:hover {
+      box-shadow: 0 14px 24px -8px rgba(1, 77, 77, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .grid-card .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .grid-card h3 {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: #004d4a;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #c3e3e0;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+
+    .grid-card p {
+      color: #2c3f42;
+      font-size: 0.98rem;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .grid-card .meta-tag {
+      background: #d9efec;
+      color: #004743;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      align-self: flex-start;
+    }
+
+    /* 三段自然介绍 – 杂志叙事流 */
+    .magazine-narrative {
+      margin: 28px 0 44px;
+    }
+
+    .narrative-block {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      padding: 30px 32px;
+      border-radius: 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgba(0, 50, 50, 0.02);
+      border-left: 6px solid #259c96;
+      transition: background 0.2s;
+    }
+
+    .narrative-block:nth-child(2) {
+      border-left-color: #4bb3ad;
+    }
+
+    .narrative-block:nth-child(3) {
+      border-left-color: #79c8c3;
+    }
+
+    .narrative-block h2 {
+      font-size: 1.6rem;
+      font-weight: 450;
+      color: #003b38;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .narrative-block h2 small {
+      font-size: 0.9rem;
+      background: #e6f7f5;
+      color: #005550;
+      padding: 0 14px;
+      border-radius: 30px;
+      font-weight: 400;
+    }
+
+    .narrative-block p {
+      font-size: 1.02rem;
+      color: #1e373a;
+      margin-bottom: 6px;
+    }
+
+    .narrative-block p a {
+      color: #1b7e78;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px dashed #7abfba;
+      transition: border-bottom 0.2s;
+    }
+
+    .narrative-block p a:hover {
+      border-bottom: 2px solid #09635e;
+    }
+
+    /* FAQ 摘要 – 迷你手风琴风格 */
+    .faq-mini {
+      background: #f0f8f7;
+      border-radius: 32px;
+      padding: 28px 28px 24px;
+      margin: 32px 0 40px;
+    }
+
+    .faq-mini h2 {
+      font-size: 1.5rem;
+      font-weight: 450;
+      color: #003f3c;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-mini h2:after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #bcd9d5;
+    }
+
+    .faq-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #cde0dd;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      color: #004543;
+      margin-bottom: 4px;
+      font-size: 1.05rem;
+    }
+
+    .faq-item p {
+      color: #2f4b4d;
+      font-size: 0.95rem;
+      padding-right: 20px;
+    }
+
+    /* 页尾访问提示 */
+    .footer-visit {
+      background: #003734;
+      border-radius: 48px 48px 24px 24px;
+      padding: 32px 28px 28px;
+      color: rgba(255, 255, 255, 0.92);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .footer-visit .visit-text {
+      font-size: 1.15rem;
+      max-width: 480px;
+    }
+
+    .footer-visit .visit-text a {
+      color: #baf3ee;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #479f99;
+      transition: color 0.15s;
+    }
+
+    .footer-visit .visit-text a:hover {
+      color: white;
+      border-bottom-color: white;
+    }
+
+    .footer-visit .visit-badge {
+      background: #1b726d;
+      padding: 8px 24px;
+      border-radius: 60px;
+      font-weight: 450;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      border: 1px solid #469e98;
+      backdrop-filter: blur(2px);
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: #4f6c6b;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 680px) {
+      .hero-magazine h1 {
+        font-size: 2rem;
+      }
+      .hero-magazine {
+        padding: 36px 20px 32px;
+        border-radius: 24px;
+      }
+      .narrative-block {
+        padding: 22px 20px;
+        border-left-width: 4px;
+      }
+      .grid-card {
+        padding: 22px 18px;
+      }
+      .faq-mini {
+        padding: 20px;
+      }
+      .footer-visit {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 20px;
+        border-radius: 36px 36px 20px 20px;
+      }
+      .footer-visit .visit-text {
+        max-width: 100%;
+      }
+      .hero-magazine h1 span {
+        display: inline-block;
+        margin-left: 4px;
+        font-size: 0.8rem;
+        padding: 2px 12px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .hero-magazine h1 {
+        font-size: 1.7rem;
+      }
+      .hero-magazine .hero-sub {
+        font-size: 0.98rem;
+        padding-left: 14px;
+      }
+      .narrative-block h2 {
+        font-size: 1.3rem;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- 杂志横幅 hero -->
+  <div class="hero-magazine">
+    <h1>
+      星空体育
+      <span>专题</span>
+    </h1>
+    <div class="hero-sub">
+      从城市露台到山谷营地，运动与星光之间并不遥远。
+    </div>
+    <div class="hero-tagline">
+      ⚡ 节奏 · 自然 · 连接
+    </div>
+  </div>
+
+  <!-- 背景说明：杂志式短述 -->
+  <div style="padding: 0 4px;">
+    <p style="font-size: 1.05rem; color: #1d4441; background: #e7f6f4; padding: 16px 24px; border-radius: 40px; margin-bottom: 12px;">
+      🌿 星空体育不是某个遥远的符号，而是一种将日常运动融入昼夜节奏的生活方式。
+      我们关注那些在夜幕降临时依然跃动的身影，也记录清晨微光中舒展的呼吸。
+    </p>
+  </div>
+
+  <!-- 网格卡片：特点 + 场景 -->
+  <div class="feature-grid">
+    <div class="grid-card">
+      <div class="card-icon">🌌</div>
+      <h3>暗光友好</h3>
+      <p>无论是在跑道、河岸还是天台，低光环境下的运动体验经过专门打磨。反光细节与柔和指引，让夜晚的每次迈步都踏实自在。</p>
+      <span class="meta-tag">城市 · 夜晚</span>
+    </div>
+    <div class="grid-card">
+      <div class="card-icon">🧘</div>
+      <h3>节奏呼吸</h3>
+      <p>将自然节律与动作结合，在星空下调整步频与呼吸。不追求极限，只在乎持续与感受。</p>
+      <span class="meta-tag">恢复 · 流动</span>
+    </div>
+    <div class="grid-card">
+      <div class="card-icon">🏞️</div>
+      <h3>旷野社群</h3>
+      <p>从湖边到山脊，小规模的结伴探索正在生长。没有喧嚣，只有风声、脚步声和偶尔的交谈。真正的连接发生在安静里。</p>
+      <span class="meta-tag">户外 · 社群</span>
+    </div>
+  </div>
+
+  <!-- 三段自然介绍（杂志专题核心） -->
+  <div class="magazine-narrative">
+    <div class="narrative-block">
+      <h2>01 · 星光下的准备 <small>仪式</small></h2>
+      <p>
+        天色渐暗，华灯初上。当你系好鞋带、推开家门的那一刻，一天中属于身体的时刻才真正开始。
+        很多人选择在晚上活动，不是为了逃避白日的喧嚣，而是为了在安静中找回对身体的感知。
+        <a href="https://cn-web-xksport.com">星空体育</a>所传递的理念，恰好就藏在这份日常的仪式感里——不必刻意，但要认真。
+      </p>
+    </div>
+
+    <div class="narrative-block">
+      <h2>02 · 从跑道到山坡 <small>场景</small></h2>
+      <p>
+        公园的塑胶跑道、社区健身角、近郊的防火道……运动发生的场所远比我们想象的丰富。
+        有人在路灯下拉伸，有人在山顶等待月亮升起。这些画面并不特殊，却构成了大多数人最真实的运动记忆。
+        一个简单的动作，一处熟悉的路段，都可能成为一整天的锚点。
+      </p>
+    </div>
+
+    <div class="narrative-block">
+      <h2>03 · 安静地坚持 <small>态度</small></h2>
+      <p>
+        没有什么比持续的小动作更能改变状态。不需要昂贵的装备，也无需打卡炫耀。
+        独自在阳台做几组拉伸，或者约一两个朋友在小区里快走，都是有效且持久的运动方式。
+        当星空体育成为一种生活底色，自律便不再是负担，而是一种自然而然的惯性。
+      </p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 – 轻量问答 -->
+  <div class="faq-mini">
+    <h2>❓ 一些简单的问题</h2>
+    <div class="faq-item">
+      <strong>一定要在户外才能感受吗？</strong>
+      <p>不完全是。但离开四面墙壁，让空气流动起来，身体会更容易进入放松又警觉的状态。阳台、窗边也是好的起点。</p>
+    </div>
+    <div class="faq-item">
+      <strong>适合什么强度的锻炼？</strong>
+      <p>低到中等强度。慢跑、快走、瑜伽、自重训练都很合适。关键在于规律，而不是单次的强度。</p>
+    </div>
+    <div class="faq-item">
+      <strong>夜晚运动需要注意什么？</strong>
+      <p>留意光线和路面，穿着有反光细节的衣物，结伴更佳。不必强求距离或时长，感受比数据更重要。</p>
+    </div>
+  </div>
+
+  <!-- 页尾访问提示 + 链接 -->
+  <div class="footer-visit">
+    <div class="visit-text">
+      如果你对这样的运动方式感兴趣，不妨去 <a href="https://cn-web-xksport.com">星空体育</a> 了解更多内容与灵感。
+      那里汇集了许多真实的故事与简单的实践方法。
+    </div>
+    <div class="visit-badge">
+      ✦ 继续阅读 ✦
+    </div>
+  </div>
+
+  <div class="footer-note">
+    杂志专题 · 用心呼吸，自在运动
+  </div>
+</div>
+</body>
+</html>

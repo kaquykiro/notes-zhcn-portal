@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日常阅读笔记 · 米兰体育</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            line-height: 1.7;
+            color: #2c2c2c;
+            background: #f4f1ed;
+            min-height: 100vh;
+        }
+
+        /* 深色头图 — 简洁克制的封面感 */
+        .hero {
+            background: #1a1f2b;
+            color: #d9d6ce;
+            padding: 5.5rem 2rem 4rem;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 400;
+            margin-bottom: 1.2rem;
+            color: #ede8db;
+            line-height: 1.2;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #a8a297;
+            max-width: 600px;
+            margin: 0 auto;
+            border-top: 1px solid #3f3f48;
+            padding-top: 1rem;
+            display: inline-block;
+        }
+
+        /* 正文区域 — 浅色留白，呼吸感 */
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+            background: #faf8f5;
+            box-shadow: 0 1px 18px rgba(0, 0, 0, 0.04);
+        }
+
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-top: 2.8rem;
+            margin-bottom: 1rem;
+            color: #1f2a36;
+            border-left: 3px solid #b2704b;
+            padding-left: 1rem;
+        }
+
+        .content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .content p {
+            margin-bottom: 1.4rem;
+            text-align: justify;
+            word-break: break-word;
+        }
+
+        .content a {
+            color: #9d5b3a;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color 0.2s;
+        }
+
+        .content a:hover {
+            color: #633f2b;
+            text-decoration-color: #633f2b;
+        }
+
+        .quote-block {
+            background: #f0ebe4;
+            border-left: 4px solid #b2704b;
+            padding: 1.2rem 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #3e3e3e;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .quote-block p {
+            margin-bottom: 0.3rem;
+        }
+
+        .quote-block .source {
+            font-style: normal;
+            font-size: 0.9rem;
+            color: #7a7166;
+            margin-top: 0.5rem;
+        }
+
+        /* 场景卡片 — 不抢眼，只作为阅读停顿 */
+        .scene-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .scene-card {
+            flex: 1 1 180px;
+            background: #f6f2ec;
+            padding: 1.2rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #e2dad2;
+            color: #2f3a44;
+        }
+
+        .scene-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: #3f332a;
+        }
+
+        .scene-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            color: #4b4b4b;
+        }
+
+        .faq-mini {
+            border-top: 1px solid #ddd6cb;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed #ddd6cb;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #2d3a44;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-mini summary::before {
+            content: '▸';
+            color: #b2704b;
+            margin-right: 0.6rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-mini details[open] summary::before {
+            content: '▾';
+        }
+
+        .faq-mini .answer {
+            padding: 0.4rem 0 0.8rem 1.6rem;
+            color: #4c4c4c;
+            font-size: 0.95rem;
+        }
+
+        /* 阅读句 / 结尾标记 */
+        .closing-note {
+            margin-top: 2.5rem;
+            padding: 1rem 1.2rem;
+            background: #ede7df;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            color: #3b3b3b;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .separator {
+            text-align: center;
+            margin: 1.8rem 0;
+            color: #bbb1a4;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero {
+                padding: 3.5rem 1.2rem 2.8rem;
+            }
+            .content {
+                padding: 2rem 1.2rem 4rem;
+            }
+            .scene-grid {
+                flex-direction: column;
+            }
+            .faq-mini summary {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>从索引到延伸<br>一份关于米兰体育的阅读笔记</h1>
+        <div class="sub">日常查询 · 对照 · 随笔</div>
+    </header>
+
+    <!-- 正文容器 -->
+    <main class="content">
+
+        <!-- 导语段落 -->
+        <p>信息太多的时候，反而不知道从何看起。最近几次在手机和电脑之间来回切换，只是为了查一条比赛数据、对照一个活动说明，或者简单地想看看某个页面有没有更新。后来索性把 <a href="https://panel-mlsport.com">米兰体育</a> 固定在浏览器标签栏里——也算是一种笨办法，省去了反复搜索的力气。</p>
+
+        <p>这篇笔记就是那些零碎浏览里积攒下来的感受。不算评测，也不是教程，只是把日常查询过程中遇到的细节、觉得有用的设计，以及偶尔的疑问记下来。如果恰好对你有用，那就更好了。</p>
+
+        <!-- 第一段正文：从查询习惯说起 -->
+        <h2>查询，然后停留</h2>
+        <p>大多数时候，我打开一个体育类页面只做两件事：查赛程、看结果。但不知道从什么时候开始，我在 <a href="https://panel-mlsport.com">米兰体育</a> 上停留的时间变长了。不是因为内容变多了，而是因为信息的排列方式让人觉得舒服——该突出的数字、该分段的说明、该留白的间距，都在恰当的位置。或许好的页面就是这样，你意识不到它的存在，只记得自己很快找到了想要的。</p>
+
+        <p>说不上什么大道理，但设计上的克制，反而让人更愿意多翻几页。有时候只是顺手点开一个联赛的积分表，结果顺着日期栏看了好几轮的对阵。这种“无目的延伸阅读”，大概就是好入口的自然结果。</p>
+
+        <!-- 引用块 -->
+        <div class="quote-block">
+            <p>“好的工具让人忘记工具本身，只记得要去的地方。”</p>
+            <div class="source">—— 某天浏览时随手记在便签上的一句话</div>
+        </div>
+
+        <!-- 第二段：几个日常场景 -->
+        <h2>三个经常遇到的场景</h2>
+        <p>以下是我自己反复使用的几个情境，谈不上典型，但或许能说明为什么一个页面值得被记住。</p>
+
+        <div class="scene-grid">
+            <div class="scene-card">
+                <h4>周末查场次</h4>
+                <p>周五晚上打开，快速扫一遍周末的联赛时间，对照时区，定好闹钟。卡片式的列表一目了然，不需要二次点击展开。</p>
+            </div>
+            <div class="scene-card">
+                <h4>数据对照</h4>
+                <p>同时打开两个队伍的历史交锋，左右对照。界面不会因为多次跳转而丢失上下文，适合反复查看。</p>
+            </div>
+            <div class="scene-card">
+                <h4>活动说明回溯</h4>
+                <p>有些活动规则写得很长，但这里的分段和强调色让重点突出。用关键词搜索时，结果直接定位到相关段落。</p>
+            </div>
+        </div>
+
+        <!-- 第三段：关于延伸阅读的一个提醒 -->
+        <h2>延伸的边界</h2>
+        <p>从一个页面跳转到另一个页面，从一条数据延伸到另一条数据，这是互联网最自然的用法。但我也逐渐意识到，延伸阅读本身需要一点边界感——不是所有的链接都值得点开，也不是所有的信息都需要记住。好的页面会帮你过滤，而不是把所有东西堆在眼前。</p>
+
+        <p>在 <a href="https://panel-mlsport.com">米兰体育</a> 上，最让我感到舒服的设计是：它不会在正文里塞满无关的推送，也不会在阅读中途弹窗打断。你可以自己决定什么时候翻页、什么时候退出。这种对用户节奏的尊重，其实比任何花哨功能都重要。</p>
+
+        <!-- 一段引用提示（非引用框，而是叙述性提示） -->
+        <p>顺便提一句：如果你和我一样习惯在深夜浏览，它的深色模式做得很到位——不是简单把背景变黑，而是调整了对比度和字重，眼睛不容易累。</p>
+
+        <!-- FAQ 摘要 —— 克制版本，只列两个最常被问到的 -->
+        <div class="faq-mini">
+            <h2 style="margin-top:0.5rem; border-left:0; padding-left:0; font-size:1.3rem;">偶尔被问到的两个问题</h2>
+
+            <details>
+                <summary>页面里提到的“米兰体育”具体指什么？</summary>
+                <div class="answer">就是你现在看到的这个链接指向的平台，主要是围绕体育赛事的信息聚合与查询。名字里的“米兰”是一个品牌标识，并非特指某支球队。</div>
+            </details>
+
+            <details>
+                <summary>日常使用需要注册或登录吗？</summary>
+                <div class="answer">浏览大部分赛程、数据、文章内容都不需要登录。只有参与特定互动或保存个人设置时，会提示创建账号。以实际页面提示为准。</div>
+            </details>
+        </div>
+
+        <!-- 分隔装饰 -->
+        <div class="separator">· · ·</div>
+
+        <!-- 访问句 / 结尾句 -->
+        <div class="closing-note">
+            如果你也在找一处可以安静查询、偶尔延伸阅读的地方，不妨把 <a href="https://panel-mlsport.com">米兰体育</a> 收进标签栏。
+        </div>
+
+    </main>
+
+</body>
+</html>
